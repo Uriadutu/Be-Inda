@@ -20,13 +20,20 @@ const Arsip = db.define(
         notEmpty: true,
       },
     },
-    urlDrilling : {
-        type: DataTypes.STRING,
+    urlDrilling: {
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
-    }
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
   },
   {
     freezeTableName: true,

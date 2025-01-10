@@ -23,6 +23,40 @@ export const getArsipbyId = async (req, res) => {
   }
 };
 
+export const getArsipbyTerima = async (req, res) => {
+  try {
+    const response = await Arsip.findAll({
+      where: { status: "Diterima" },
+    });
+    if (!response) return res.status(404).json({ msg: "Data tidak ditemukan" });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ msg: "Gagal mengambil data arsip" });
+  }
+};
+export const getArsipbyPending = async (req, res) => {
+  try {
+    const response = await Arsip.findAll({
+      where: { status: "pending" },
+    });
+    if (!response) return res.status(404).json({ msg: "Data tidak ditemukan" });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ msg: "Gagal mengambil data arsip" });
+  }
+};
+export const terimaArsip = async (req, res) => {
+  try {
+    const arsip = await Arsip.findOne({
+      where: { id: req.params.id },
+    });
+    if (!arsip) return res.status(404).json({ msg: "Data tidak ditemukan" });
+    await arsip.update({ status: "Diterima" });
+  } catch (error) {
+    res.status(500).json({ msg: "Gagal menerima data arsip" });
+  }
+};
+
 
 export const createArsip = async (req, res) => {
     const { tanggal } = req.body;
@@ -63,6 +97,7 @@ export const createArsip = async (req, res) => {
           drilling: originalName,
           tanggal,
           urlDrilling: fileUrl,
+          status : "pending"
         });
   
         res.status(201).json({ msg: "Drilling report berhasil ditambahkan" });
