@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize"
 
 dotenv.config()
 
-const db = new Sequelize("db_inda", "root", "", {
+const db = new Sequelize("db_driling", "root", "", {
   host: "localhost",
   dialect: "mysql",
 });
