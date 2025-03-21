@@ -10,6 +10,10 @@ const Sumary = db.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    by_tgl : {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     proposedID: {
       type: DataTypes.STRING,
       allowNull: true,

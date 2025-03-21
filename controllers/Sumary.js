@@ -29,6 +29,21 @@ export const getAllSumary = async (req, res) => {
     });
   }
 };
+export const getAllSumarybyTgl = async (req, res) => {
+  try {
+    const sumary = await Sumary.findAll({
+      where : {
+        by_tgl : req.params.tgl
+      }
+    });
+    res.status(200).json(sumary);
+  } catch (error) {
+    res.status(500).json({
+      message: "Gagal mengambil data.",
+      error: error.message,
+    });
+  }
+};
 
 // READ: Mendapatkan data Sumary berdasarkan ID
 export const getSumaryById = async (req, res) => {
